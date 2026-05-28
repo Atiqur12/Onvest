@@ -1,0 +1,24 @@
+{
+  "name": "onvest",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Onvest — digital KYC and investor onboarding for EU fund managers",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "api:dev": "npm run start:dev --workspace=@onvest/api",
+    "api:build": "npm run build --workspace=@onvest/api",
+    "api:migration:run": "npm run migration:run --workspace=@onvest/api",
+    "web:dev": "npm run dev --workspace=@onvest/web",
+    "web:build": "npm run build --workspace=@onvest/web",
+    "shared:build": "npm run build --workspace=@onvest/shared",
+    "db:up": "docker compose up -d mysql",
+    "db:down": "docker compose down",
+    "db:logs": "docker compose logs -f mysql"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

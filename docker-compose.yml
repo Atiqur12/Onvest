@@ -1,0 +1,32 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: onvest-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: onvest_root_pw
+      MYSQL_DATABASE: onvest
+      MYSQL_USER: onvest
+      MYSQL_PASSWORD: onvest_pw
+    ports:
+      - "3306:3306"
+    volumes:
+      - onvest-mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-ponvest_root_pw"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  adminer:
+    image: adminer:latest
+    container_name: onvest-adminer
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+volumes:
+  onvest-mysql-data:

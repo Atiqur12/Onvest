@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --shadow-blue: 0 4px 20px rgba(27, 79, 191, 0.2);
+  }
+
+  html {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    color: #0f1724;
+    background: #f8f7f4;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-canvas text-ink-900;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Instrument Serif', Georgia, serif;
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer components {
+  /* Buttons --------------------------------------------------------------- */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-md bg-brand-500 px-4 py-2.5 text-sm font-medium text-white shadow-soft transition-all duration-150 ease-out hover:bg-brand-600 hover:shadow-glow hover:scale-[1.02] active:scale-100 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-md border border-ink-200 bg-white px-4 py-2.5 text-sm font-medium text-ink-900 shadow-soft transition-all duration-150 ease-out hover:bg-ink-100 hover:border-ink-200 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-ink-700 transition-colors duration-150 hover:bg-ink-100;
+  }
+  .btn-success {
+    @apply inline-flex items-center justify-center gap-2 rounded-md bg-accent-emerald px-4 py-2.5 text-sm font-medium text-white shadow-soft transition-all duration-150 ease-out hover:bg-emerald-600 hover:shadow-md disabled:opacity-50;
+  }
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 rounded-md border border-accent-rose/40 bg-white px-4 py-2.5 text-sm font-medium text-accent-rose transition-all duration-150 ease-out hover:bg-accent-rose hover:text-white disabled:opacity-50;
+  }
+
+  /* Cards ----------------------------------------------------------------- */
+  .card {
+    @apply rounded-lg bg-white p-6 shadow-soft;
+  }
+  .card-elevated {
+    @apply rounded-lg bg-white p-6 shadow-elevated;
+  }
+  .card-bordered {
+    @apply rounded-lg border border-ink-200 bg-white p-6;
+  }
+
+  /* Inputs ---------------------------------------------------------------- */
+  .input {
+    @apply w-full rounded-md border border-ink-200 bg-white px-3.5 py-2.5 text-sm text-ink-900 placeholder:text-ink-400 transition-colors duration-150 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/15;
+  }
+  .label {
+    @apply mb-1.5 block text-xs font-medium uppercase tracking-wider text-ink-500;
+  }
+
+  /* Status pills ---------------------------------------------------------- */
+  .pill {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium;
+  }
+  .pill-neutral { @apply pill bg-ink-100 text-ink-700; }
+  .pill-info    { @apply pill bg-brand-50 text-brand-700; }
+  .pill-warning { @apply pill bg-amber-50 text-amber-700; }
+  .pill-success { @apply pill bg-emerald-50 text-emerald-700; }
+  .pill-danger  { @apply pill bg-rose-50 text-accent-rose; }
+  .pill-teal    { @apply pill bg-teal-50 text-teal-700; }
+
+  /* Page chrome ----------------------------------------------------------- */
+  .page-title {
+    @apply font-serif text-4xl text-ink-900;
+  }
+  .page-subtitle {
+    @apply mt-1.5 text-sm text-ink-500;
+  }
+  .section-title {
+    @apply font-serif text-2xl text-ink-900;
+  }
+
+  /* Stat card colored borders -------------------------------------------- */
+  .stat-card { @apply relative overflow-hidden rounded-lg bg-white p-6 shadow-elevated transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lifted; }
+  .stat-card::before { content: ''; @apply absolute inset-y-0 left-0 w-1; }
+  .stat-card-blue::before    { @apply bg-brand-500; }
+  .stat-card-amber::before   { @apply bg-accent-amber; }
+  .stat-card-emerald::before { @apply bg-accent-emerald; }
+  .stat-card-purple::before  { @apply bg-purple-500; }
+
+  /* Table helpers --------------------------------------------------------- */
+  .data-table {
+    @apply w-full text-left text-sm;
+  }
+  .data-table thead {
+    @apply border-b border-ink-200 bg-ink-100/60 text-xs uppercase tracking-wider text-ink-500;
+  }
+  .data-table thead th {
+    @apply px-5 py-3 font-medium;
+  }
+  .data-table tbody tr {
+    @apply border-b border-ink-100 transition-colors duration-100 last:border-b-0 hover:bg-canvas;
+  }
+  .data-table tbody td {
+    @apply px-5 py-4;
+  }
+
+  /* Sidebar nav ----------------------------------------------------------- */
+  .sidebar-link {
+    @apply relative flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium text-white/60 transition-all duration-150 hover:bg-white/5 hover:text-white;
+  }
+  .sidebar-link-active {
+    @apply bg-brand-500/15 text-white shadow-[inset_3px_0_0_0_#3b82f6];
+  }
+
+  /* Upload zone ----------------------------------------------------------- */
+  .upload-zone {
+    @apply flex flex-col items-center justify-center gap-3 rounded-lg border-2 border-dashed border-ink-200 bg-canvas px-6 py-10 text-center transition-colors duration-150 hover:border-brand-500 hover:bg-brand-50/40;
+  }
+
+  /* Timeline dot ---------------------------------------------------------- */
+  .tl-dot { @apply h-2.5 w-2.5 rounded-full ring-4; }
+  .tl-dot-blue    { @apply tl-dot bg-brand-500 ring-brand-50; }
+  .tl-dot-green   { @apply tl-dot bg-accent-emerald ring-emerald-50; }
+  .tl-dot-red     { @apply tl-dot bg-accent-rose ring-rose-50; }
+  .tl-dot-amber   { @apply tl-dot bg-accent-amber ring-amber-50; }
+  .tl-dot-gray    { @apply tl-dot bg-ink-400 ring-ink-100; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
